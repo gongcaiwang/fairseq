@@ -46,10 +46,13 @@ def load_tacotron(tacotron_model_path, max_decoder_steps,device='cuda'):
     return model, sr, hparams
 
 
-def load_waveglow(waveglow_path,device='cuda'):
+def load_waveglow(waveglow_path,device='cuda', use_denoiser=True):
     waveglow = torch.load(waveglow_path,map_location=device)["model"]
     waveglow = waveglow.to(device).eval()#.half()
     for k in waveglow.convinv:
         k.float()
-    denoiser = Denoiser(waveglow)
+    if use_denoiser:
+        denoiser = Denoiser(waveglow)
+    else:
+        denoiser = None
     return waveglow, denoiser
