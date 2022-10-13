@@ -156,6 +156,7 @@ and [RoBERTa](https://pytorch.org/hub/pytorch_fairseq_roberta/) for more example
 git clone https://github.com/pytorch/fairseq
 cd fairseq
 pip install --editable ./
+python setup.py build develop 
 
 # on MacOS:
 # CFLAGS="-stdlib=libc++" pip install --editable ./
